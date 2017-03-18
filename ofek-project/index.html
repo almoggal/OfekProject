@@ -8,32 +8,58 @@
 <link rel="stylesheet" href="css/google.css?family=Roboto">
 <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" src="css/style.css">
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/main.js"></script>
-        
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
 <body dir="rtl">
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-theme w3-top w3-right-align w3-large" id="navbar">
-    <a class="w3-bar-item w3-button w3-opennav w3-left w3-hide-large w3-hover-white w3-large w3-theme-l1" onclick="w3_open()"><i id="navbar-btn" class="fa fa-bars"></i></a>
-  </div>
-</div>
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-theme w3-top w3-right-align w3-large" id="navbar">
+            <a class="w3-bar-item w3-button w3-opennav w3-left w3-hide-large w3-hover-white w3-large w3-theme-l1" onclick="w3_open()"><i id="navbar-btn" class="fa fa-bars"></i></a>
+        </div>
+    </div>
 
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-right" style="z-index:3;width:250px;margin-top:43px;right:0" id="mySidebar">
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-left w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
-    <i class="fa fa-remove"></i>
-  </a>
-  <h4 class="w3-bar-item" style="text-align:right"><b>תפריט</b></h4>
-</nav>
+    <!-- Sidebar -->
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-right" style="z-index:3;width:250px;margin-top:43px;right:0" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-left w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+            <i class="fa fa-remove"></i>
+        </a>
+        <h4 class="w3-bar-item" style="text-align:right"><b>תפריט</b></h4>
+    </nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<div id="includedContent"></div>
-<!-- END MAIN -->
-</div>
+    <div id="includedContent"></div>
+    <!-- END MAIN -->
+    </div>
+    
+<!--     TODO : firebase script, add this in any "index" html, before any other script tags-->
 
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBRiKXCUdi1N5sxZoaMpyPXbtABIXEFnwg",
+            authDomain: "ofekproject-76bf1.firebaseapp.com",
+            databaseURL: "https://ofekproject-76bf1.firebaseio.com",
+            storageBucket: "ofekproject-76bf1.appspot.com",
+            messagingSenderId: "161564142463"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    
 </body>
+
 </html>

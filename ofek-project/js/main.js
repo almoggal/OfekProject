@@ -1,55 +1,109 @@
-$(function(){
-      $("#includedContent").load("pages/content.html"); 
-    });
+$(function () {
+    $("#includedContent").load("pages/content.html");
+});
 
-$( document ).ready(function() {
-    console.log( "page ready!" );
-    
-    var nav_buttons = ["שעות שקם", "דירה חדשה", "ביבי בנציהו", "חדשות"];
+$(document).ready(function () {
+    console.log("page ready!");
+
+    // 
+
+    var nav_buttons = [""];
     var bases_buttons = ["צריפין", "108", "בחא 6", "כנף 180", "למה מלכתחילה"];
-    var main_buttons = ["בית", "בסיסים", "חדשות"];
-    
+    var main_buttons = ["בסיסים", "משתמשים רשומים"]
+
     //Get button lists from json
-    
+
     //Set the buttons in the webpage
     setNavBarButtons(main_buttons);
-    setSideBarButtons(nav_buttons);
+    setSideBarButtons([]);
+
+    // writeBase example
+    //    writeBase("kirya", "קיריה", [{
+    //        key : "זמני פתיחת שקם",
+    //        value : "8:00-16:00"
+    //    },{
+    //        key : "חלביה",
+    //        value : "קפה מגעיל"
+    //    }])
+
+    readBasePromise("kirya").then(function (snapshot) {
+        var data = snapshot.val()
+        var name = data.name
+        var properties = data.properties
+        var btns = []
+
+        properties.forEach(function (p) {
+            btns.push(p.key)
+        })
+
+        setSideBarButtons(btns)
+    })
 });
 
 
-var setSideBarButtons = function(buttons){
-   
+//var props = null;
+//
+//readBasePromise("kirya").then(function () {
+//    var data = snapshot.val()
+//    var name = data.name
+//    var properties = data.properties
+//    
+//    // write to html
+//    props = properties
+//    
+//    writeBase("kirya", "קריה", properties)
+//})
+//
+//prop.push({key:"", value: ""})
+
+
+function writeBase(id, name, properties) {
+    firebase.database().ref('bases/' + id).set({
+        name: name,
+        properties: properties
+    });
+}
+
+function readBasePromise(id) {
+    return firebase.database().ref('bases/' + id).once("value");
+}
+
+var setSideBarButtons = function (buttons) {
+
     //var buttons = ["Logo", "About", "Value", "News", "Contact"];
-    
+
     //<a href="#" class="w3-bar-item w3-button w3-theme-l1">Logo</a>
     //<a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-    
+
+    // TODO : on-click='removeField()' - span
+    //         add span only on edit mode
     var sidebar = document.createElement("div");
-    
-    for(var i = 0; i<buttons.length; i++){
-        sidebar.innerHTML+="<a href=\"#\" class=\"w3-bar-item w3-right-align w3-button w3-hover-black\">"+buttons[i]+"</a>";
-            
+
+    for (var i = 0; i < buttons.length; i++) {
+        sidebar.innerHTML += "<a href=\"#\" class=\"w3-bar-item w3-right-align w3-button w3-hover-black\">" + buttons[i] + "</a>" +
+            "<span class='glyphicon glyphicon-minus-sign w3-bar-item w3-left-align w3-button w3-hover-black'></span>";
+
     }
-    
+
     $('#mySidebar').append(sidebar);
 };
 
-var setNavBarButtons = function(buttons){
-   
+var setNavBarButtons = function (buttons) {
+
     //var buttons = ["Logo", "About", "Value", "News", "Contact"];
-    
+
     //<a href="#" class="w3-bar-item w3-button w3-theme-l1">Logo</a>
     //<a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
-    
+
     var topBar = document.createElement("div");
-    topBar.style.position='absolute';
-    
-    for(var i = 1; i<buttons.length; i++){
-        topBar.innerHTML+="<a href=\"#\" class=\"w3-bar-item w3-button w3-hover-white\">"+buttons[i]+"</a>";
-            
+    topBar.style.position = 'absolute';
+
+    for (var i = 1; i < buttons.length; i++) {
+        topBar.innerHTML += "<a href=\"#\" class=\"w3-bar-item w3-button w3-hover-white\">" + buttons[i] + "</a>";
+
     }
-    
-    topBar.innerHTML+="<a href=\"#\" class=\"w3-bar-item w3-button w3-theme-l1\">"+buttons[0]+"</a>";
+
+    topBar.innerHTML += "<a href=\"#\" class=\"w3-bar-item w3-button w3-theme-l1\">" + buttons[0] + "</a>";
     $('#navbar').append(topBar);
 };
 
