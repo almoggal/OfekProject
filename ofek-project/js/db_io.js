@@ -6,13 +6,13 @@ function writeBaseNames(base_names) {
 
 function writeBase(base_name, base_properties) {
     firebase.database().ref('bases/' + base_name).set({
-        properties: properties
+        properties: base_properties
     });
 }
 
 
 function readBaseNamesPromise() {
-    firebase.database().ref('base_names/').once("value");
+    return firebase.database().ref('base_names/').once("value");
 }
 
 function readBasePromise(base_name) {
@@ -21,9 +21,11 @@ function readBasePromise(base_name) {
 
 function readBaseNames() {
     firebase.database().ref('base_names/').once("value").then(function(snapshot) {
-        var base_names = snapshot.val().base_name_list
-        return base_names
+        var base_names = snapshot.val();
+        //document.write(base_names);
+        return snapshot.val();
     })
+
 }
 
 function readBaseData(base_name) {
@@ -38,3 +40,16 @@ function removeBase(base_name) {
 }
 
 //Here we're trying to test the code.
+// var basesNamesPromise = readBaseNamesPromise()
+// basesNamesPromise.then(function(snapshot) {
+//     var base_names = snapshot.val();
+//     //document.write(base_names);
+//     // document.write( snapshot.val());
+// })
+// writeBase("Shizaform", {ShekemHours:"08:00-16:00", Location:"Tizinahui"})
+// var hatzorPromise = readBasePromise("Shizaform")
+// hatzorPromise.then(function(snapshot) {
+//     var props = snapshot.val().properties
+//     document.write(JSON.stringify(props))
+// })
+// removeBase("Shizaform")
