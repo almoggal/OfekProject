@@ -19,18 +19,42 @@
             <i class="fa fa-spinner w3-spin" style="font-size:128px;"></i>
         </p>
         
-    <div id="id01" class="w3-modal">
-        <div class="w3-modal-content w3-panel w3-yellow w3-card-4"><h3>לא ניתן להתחבר</h3></div>
-    </div>
-        
-    <div id="id02" class="w3-modal">
-        <div class="w3-modal-content w3-panel w3-green w3-card-4"><h3>התחברת בהצלחה</h3></div>
-    </div>
-        
+    
       <button onclick="onSubmit()" class="w3-btn w3-blue-grey" style="margin-top:30px;">התחבר</button>
     </form>
     
     <div class="w3-container" style="margin-top:30px; padding-top: 0px; padding-bottom: 10px;">
         <h4>להרשמה כמשתמש עורך, שלח בקשה <a href="#">למנהל</a></h4>
     </div>
+    
+           <!-- The Modal -->
+<div id="modalSuccess" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header-success">
+      <span class="close">&times;</span>
+      <h2>ההתחברות הצליחה</h2>
+    </div>
+    <div class="modal-footer-success">
+    </div>
+  </div>
+
+</div>
+    
+<div id="modalFail" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header-fail">
+      <span class="close">&times;</span>
+      <h2>ההתחברות נכשלה</h2>
+    </div>
+    <div class="modal-body">
+      <p id="error_desc"></p>
+    </div>
+    <div class="modal-footer-fail">
+    </div>
+  </div>
+    
 </div>  

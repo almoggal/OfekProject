@@ -1,3 +1,9 @@
+var mSuccess = $('#modalSuccess')[0];
+var mFail = $('#modalFail')[0];
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
 $(document).ready(function() {
     console.log("login page ready!");
     
@@ -17,12 +23,19 @@ function onSubmit() {
     
     signIn(username, password).then(function(){
         console.log("Signed in!");
+        var modal = mSuccess;
+        modal.style.display = "block";
         showSpinner(false);
-        $("#includedContent").load("pages/ManagerForm.html");
+        setTimeout(function(){
+            $("#includedContent").load("pages/ManagerForm.html");
+        },1000);
     }).catch(function(error){
         showSpinner(false);
         //show error
         console.log(error);
+        $('#error_desc')[0].innerHTML=error.message;
+        var modal = mFail;
+        modal.style.display = "block";
     })
 }
 
@@ -34,17 +47,24 @@ function showSpinner(f){
         $("#loading_spinner").attr("class","w3-hide");
 }
 
-function showConnAlert(id, timeout){
-    
-    $(id)[0].style.display='block';
-    setTimeout(function() {
-        $(id)[0].style.display='none';
-    }, timeout);
-}
-
 function connSuccess(){
     $("#navbar_bottom").attr("class","");
     $("#navbar_buttons")[0].remove();
     //$('#navbar').attr("innerHtml","");
     setNavBarButtons(["התנתק", "בסיסים"]);
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    mSuccess.style.display = "none";
+    mFail.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+
+    if (event.target == mSuccess) {
+        mSuccess.style.display = "none";
+    } else if(event.target == mFail)
+        mFail.style.display = "none";
 }
