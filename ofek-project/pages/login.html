@@ -1,0 +1,36 @@
+<script src="../js/login.js"></script>
+
+<div class="container w3-center">
+
+    
+    
+    <div class="w3-container w3-teal" style="padding-top: 0px; padding-bottom: 10px;">
+        <h2>דף התחברות</h2>
+    </div>
+
+    <form class="w3-container" style="margin-top:30px;">
+      <label class="w3-label w3-text-teal"><b>שם משתמש</b></label>
+      <input class="w3-input w3-border w3-light-grey" type="text">
+
+      <label class="w3-label w3-text-teal" style="margin-top:15px;"><b>סיסמא</b></label>
+      <input class="w3-input w3-border w3-light-grey" type="password">
+
+        <p id="loading_spinner" style="margin-bottom: -128px;" class="w3-hide">
+            <i class="fa fa-spinner w3-spin" style="font-size:128px;"></i>
+        </p>
+        
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-panel w3-yellow w3-card-4"><h3>לא ניתן להתחבר</h3></div>
+    </div>
+        
+    <div id="id02" class="w3-modal">
+        <div class="w3-modal-content w3-panel w3-green w3-card-4"><h3>התחברת בהצלחה</h3></div>
+    </div>
+        
+      <button onclick="onSubmit()" class="w3-btn w3-blue-grey" style="margin-top:30px;">התחבר</button>
+    </form>
+    
+    <div class="w3-container" style="margin-top:30px; padding-top: 0px; padding-bottom: 10px;">
+        <h4>להרשמה כמשתמש עורך, שלח בקשה <a href="#">למנהל</a></h4>
+    </div>
+</div>  
