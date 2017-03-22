@@ -1,0 +1,59 @@
+<script src="../js/bootstrap.min.js"></script>
+<script src="js/manager.js"></script>
+
+   <div class="container w3-center">
+
+    <div class="w3-container w3-teal" style="padding-top: 0px; padding-bottom: 10px;">
+        <h2>רישום משתמש חדש</h2>
+    </div>
+
+    <form class="w3-container" style="margin-top:30px;">
+      <label class="w3-label w3-text-teal"><b>שם משתמש</b></label>
+      <input id="username" class="w3-input w3-border w3-light-grey" type="text">
+
+      <label class="w3-label w3-text-teal" style="margin-top:15px;"><b>סיסמא</b></label>
+      <input id="password" class="w3-input w3-border w3-light-grey" type="password">
+        
+      <label class="w3-label w3-text-teal"><b>בסיס</b></label>
+      <input id="bases" class="w3-input w3-border w3-light-grey" type="text">
+
+      <button id="submitBtn" type="button" class="w3-btn w3-blue-grey" style="margin-top:30px;">רשום משתמש</button>
+    </form>
+    
+    
+</div>
+    
+    <!-- The Modal -->
+<div id="modalSuccess" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header-success">
+      <span class="close">&times;</span>
+      <h2>הרישום הצליח</h2>
+    </div>
+    <div class="modal-body">
+      <p>המשתמש שנוצר יכול כעת להשתמש באתר עם שם המשתמש והסיסמה שנוצרו עבורו</p>
+    </div>
+    <div class="modal-footer-success">
+    </div>
+  </div>
+
+</div>
+    
+<div id="modalFail" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header-fail">
+      <span class="close">&times;</span>
+      <h2>הרישום נכשל</h2>
+    </div>
+    <div class="modal-body">
+      <p id="error_desc"></p>
+    </div>
+    <div class="modal-footer-fail">
+    </div>
+  </div>
+
+</div>

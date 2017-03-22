@@ -8,8 +8,22 @@ function onSubmit() {
     console.log("submit clicked!");
     
     showSpinner(true);
-    setTimeout('showSpinner(false);showConnAlert(\'#id01\',2000);', 2000);
-    setTimeout('showSpinner(false);showConnAlert(\'#id02\',2000);connSuccess();', 5000);
+    //setTimeout('showSpinner(false);showConnAlert(\'#id01\',1000);', 2000);
+    //setTimeout('showSpinner(false);showConnAlert(\'#id02\',1000);connSuccess();', 5000);
+    //setTimeout(function(){onClickNavBarButton(3); },1000);
+    
+    var username = $('#username')[0].value;
+    var password = $('#password')[0].value;
+    
+    signIn(username, password).then(function(){
+        console.log("Signed in!");
+        showSpinner(false);
+        $("#includedContent").load("pages/ManagerForm.html");
+    }).catch(function(error){
+        showSpinner(false);
+        //show error
+        console.log(error);
+    })
 }
 
 function showSpinner(f){

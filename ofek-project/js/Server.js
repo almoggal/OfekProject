@@ -7,9 +7,7 @@ function createUser(email, password, bases) {
 }
 function signIn(email, password) {
     var auto = firebase.auth();
-    return auto.signInWithEmailAndPassword(email, password).catch(function (error) {
-        console.log(error);
-    });
+    return auto.signInWithEmailAndPassword(email, password);
 }
 function signOut() {
     var auto = firebase.auth();
@@ -87,8 +85,5 @@ function createUsers(email, password, isManager, rule) {
     var auto = firebase.auth();
     return auto.createUserWithEmailAndPassword(email, password).then(function (firebaseUser) {
         writeUser(firebaseUser.uid, isManager, rule);
-    })
-        .catch(function (error) {
-            console.log(error);
-        });
+    });
 }
