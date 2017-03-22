@@ -15,7 +15,22 @@ function signOut() {
     var auto = firebase.auth();
     return auto.signOut();
 }
-function isAutoForBase(rule) {
+function readAutoForUser() {
+    var auto = firebase.auth();
+    var curUser = auto.currentUser;
+    if (!curUser) {
+        return false;
+    }
+    return new Promise(function(resolve, reject){
+            readUser(curUser.uid
+).
+    then(function (ruleUser) {
+        var data = ruleUser.val();
+        return data.AutoBases;
+    })
+});
+}
+function isAutoForBase(base) {
     var auto = firebase.auth();
     var curUser = auto.currentUser;
     if (!curUser) {
@@ -26,12 +41,12 @@ function isAutoForBase(rule) {
         if (Array.isArray(data.AutoBases)) {
             var found = false;
             data.AutoBases.forEach(function (p) {
-                if (p == rule)
+                if (p == base)
                     found = true;
             });
             return found;
         }
-        else if (data.AutoBases == rule) {
+        else if (data.AutoBases == base) {
             return true;
         }
         else {
