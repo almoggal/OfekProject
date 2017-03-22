@@ -2,15 +2,8 @@ $(document).ready(function() {
     console.log("bases page ready!");
 
     //Populate list
-    var bases = getBases();
-    var list = $('#bases_list');
-
     showSpinner(true);
-    setTimeout(function() {
-        popluateList(list, bases);
-        showSpinner(false);
-    }, 2000);
-    
+    getBases($('#bases_list'));
     
     //
 });
@@ -21,8 +14,13 @@ var popluateList = function(list, bases){
     }
 }
 
-var getBases = function(){
-    return ["צריפין","בחא","108","צריפין","בחא","108","צריפין","בחא","108","צריפין","בחא","108","צריפין","בחא","108"];
+var getBases = function(list){
+    readBaseNamesPromise().then(function(snapshot) {
+        var base_names = snapshot.val();
+        console.log(JSON.stringify(base_names));
+        popluateList(list, base_names);
+        showSpinner(false);
+});
 }
 
 function showSpinner(f){
