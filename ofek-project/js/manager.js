@@ -7,6 +7,18 @@ var btn = $('#submitBtn')[0];
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+$(document).ready(function() {
+    console.log("manager page ready!");
+    
+    showSpinner(true);
+    readBaseNamesPromise().then(function(names){
+        window.allbases = names.val();
+        showSpinner(false);
+        //Populate list
+        basesList($('#basesNames'));
+    })
+});
+
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
     console.log("Clicked Regsiter!");
@@ -16,7 +28,7 @@ btn.onclick = function() {
     var password = $('#password')[0].value;
     var bases = [];
     var j = 0;
-    for(var i = 0; i<window.bases.length; i++){
+    for(var i = 0; i<window.allbases.length; i++){
         if($('#num'+i)[0].checked == true){
             bases[j] = $('#num'+i)[0].value;
             j++
@@ -30,7 +42,7 @@ btn.onclick = function() {
         modal.style.display = "block";
         $('#username')[0].value = "";
         $('#password')[0].value = "";
-        for(var i = 0; i<window.bases.length; i++){
+        for(var i = 0; i<window.allbases.length; i++){
             if($('#num'+i)[0].checked == true){
                 $('#num'+i)[0].checked = false;
             }
@@ -61,19 +73,10 @@ window.onclick = function(event) {
     }
 }
 
-$(document).ready(function() {
-    console.log("Manager page ready!");
-
-    //Populate list
-    basesList($('#basesNames'));
-    
-    //
-});
-
 var basesList = function(list){
-    for(var i = 0; i<window.bases.length; i++){
-        list[0].innerHTML+="<input id=\"num"+i+"\" type=\"checkbox\" value=\""+window.bases[i]+"\">  "+window.bases[i];
-        if((i%2==0) && i< (window.bases.length - 1)){
+    for(var i = 0; i<window.allbases.length; i++){
+        list[0].innerHTML+="<input id=\"num"+i+"\" type=\"checkbox\" value=\""+window.allbases[i]+"\">  "+window.allbases[i];
+        if((i%2==0) && i< (window.allbases.length - 1)){
             list[0].innerHTML+="    |   ";
         }
         else{
