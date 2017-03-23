@@ -52,8 +52,9 @@ var getBase = function(id){
         //jsonObj.forEach( function(p){
         //    btns.push(p.key);
         //});
-        window.currentBase = jsonObj;
+        window.currentBaseFields = jsonObj;
         setSideBarButtons(btns);
+        window.currentBase = base;
         w3_enableSidear(true);
 }).catch(function(error){
         console.log(error);
