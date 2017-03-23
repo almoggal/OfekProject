@@ -32,6 +32,12 @@ function writeBase(base_name, base_properties) {
         }
     });
 }
+function updateBase(base_name,key,value)
+{
+    var updates={};
+    updates[key]=value;
+    return firebase.database().ref('bases/' + base_name+'/properties/').update(updates);
+}
 
 function readBaseNamesPromise() {
     return firebase.database().ref('base_names/').once("value");
