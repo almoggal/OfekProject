@@ -1,3 +1,6 @@
+var currentBase = [];
+var currentField = [];
+
 $(document).ready(function() {
     
     console.log("main page ready!");
@@ -30,7 +33,7 @@ var setSideBarButtons = function(buttons){
     var sidebar = document.createElement("div");
     
     for(var i = 0; i<buttons.length; i++){
-        sidebar.innerHTML+="<a href=\"#\" class=\"w3-bar-item w3-right-align w3-button w3-hover-black\">"+buttons[i]+"</a>";
+        sidebar.innerHTML+="<a href=\"#\" onclick=onClickSidebarButtons("+i+"); return false; class=\"w3-bar-item w3-right-align w3-button w3-hover-black\">"+buttons[i]+"</a>";
     }
     
     $('#mySidebar').append(sidebar);
@@ -54,6 +57,23 @@ var setNavBarButtons = function(buttons){
     
     $('#navbar').append(topBar);
 };
+
+
+var popluateList = function(list, bases){
+    for(var i = 0; i<bases.length; i++){
+        var baseName = bases[i];
+        var btn = "<button"+" onclick=getBase("+i+")"
+        +" class=\"w3-indigo w3-btn w3-round w3-xlarge\">"+baseName+"</button>";
+        list[0].innerHTML+="<li>"+btn+"</li>";
+    }
+}
+
+var onClickSidebarButtons = function(id){
+    console.log("clicked on sidebar button: "+id);
+    $("#includedContent").load("pages/content.html");
+    currentField[0] = Object.keys(currentBase)[id];
+    currentField[1] = currentBase[currentField[0]];
+}
 
 // Toggle between showing and hiding the sidebar, and add overlay effect
 function w3_open() {

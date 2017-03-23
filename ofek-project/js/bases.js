@@ -9,20 +9,11 @@ $(document).ready(function() {
     w3_enableSidear(false);
 });
 
-var popluateList = function(list, bases){
-    for(var i = 0; i<bases.length; i++){
-        var baseName = bases[i];
-        var btn = "<button"+" onclick=getBase("+i+")"
-        +" class=\"w3-indigo w3-btn w3-round w3-xlarge\">"+baseName+"</button>";
-        list[0].innerHTML+="<li>"+btn+"</li>";
-    }
-    this.bases = bases;
-}
-
 var getBases = function(list){
     readBaseNamesPromise().then(function(snapshot) {
         var base_names = snapshot.val();
         console.log(JSON.stringify(base_names));
+        this.bases = base_names;
         popluateList(list, base_names);
         //popluateList(list, ["1","בסיס 108", "נבטים"]);
         showSpinner(false);
@@ -31,7 +22,7 @@ var getBases = function(list){
 
 var getBase = function(id){
     var base = this.bases[id];
-    console.log("Click on click for base: "+base);
+    console.log("Click for base: "+base);
     readBasePromise(base).then(function(snapshot) {
         var base_names = snapshot.val();
         var jsonObj = base_names.properties;
@@ -41,6 +32,7 @@ var getBase = function(id){
         //jsonObj.forEach( function(p){
         //    btns.push(p.key);
         //});
+        this.currentBase = jsonObj;
         setSideBarButtons(btns);
         w3_enableSidear(true);
 }).catch(function(error){
