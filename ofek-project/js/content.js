@@ -1,7 +1,7 @@
 $(document).ready(function(){
     console.log("loaded content page!");
     
-    setContent(currentField[0],currentField[1]);
+    setContent(window.currentField[0],window.currentField[1]);
 });
 
 var setContent = function(title, text){

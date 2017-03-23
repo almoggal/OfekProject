@@ -10,14 +10,14 @@ $(document).ready(function() {
 var getBases = function (list) {
     readBases().then(function (base_names) {
         console.log(JSON.stringify(base_names));
-        this.bases = base_names;
+        window.bases = base_names;
         popluateList(list, base_names);
         showSpinner(false);
     });
 }
 
 var getBase = function(id){
-    var base = this.bases[id];
+    var base = window.bases[id];
     console.log("Click for base: "+base);
     readBasePromise(base).then(function(snapshot) {
         var base_names = snapshot.val();
@@ -28,7 +28,7 @@ var getBase = function(id){
         //jsonObj.forEach( function(p){
         //    btns.push(p.key);
         //});
-        this.currentBase = jsonObj;
+        window.currentBase = jsonObj;
         setSideBarButtons(btns);
         w3_enableSidear(true);
 }).catch(function(error){
