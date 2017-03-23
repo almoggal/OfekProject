@@ -1,18 +1,42 @@
 $(document).ready(function() {
     console.log("bases page ready!");
 
+    var id = window.userID;
     //Populate list
-    showSpinner(true);
-    getBases($('#bases_list'));
-    w3_enableSidear(false);
+    if(window.bases.length == null || window.bases.length == 0)
+        fireOnce(id, $('#bases_list'));
+    else
+        doneRequest($('#bases_list'));
+        
 });
+
+var getUserBases = function(list){
+    readAutoForUser().then(function(bases){
+            window.bases = bases;
+            doneRequest(list);
+        });
+}
+
+var fireOnce = function(userid, list){
+    if(userID == 0) //DEFAULT
+        getBases(list);
+    else if(userID == 1) //EDITOR
+        getUserBases(list);
+        
+    showSpinner(true);
+    w3_enableSidear(false);
+}
+
+var doneRequest = function(list){
+    popluateList(list, window.bases);
+    showSpinner(false);
+}
 
 var getBases = function (list) {
     readBases().then(function (base_names) {
         console.log(JSON.stringify(base_names));
         window.bases = base_names;
-        popluateList(list, base_names);
-        showSpinner(false);
+        doneRequest(list);
     });
 }
 
