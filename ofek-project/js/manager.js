@@ -29,6 +29,13 @@ btn.onclick = function() {
         var modal = mSuccess;
         showSpinner(false);
         modal.style.display = "block";
+        $('#username')[0].value = "";
+        $('#password')[0].value = "";
+        for(var i = 0; i<basesNum; i++){
+            if($('#num'+i)[0].checked == true){
+                $('#num'+i)[0].checked = false;
+            }
+        }
     }).catch(function(error){
         console.log("failed to register");
         $('#error_desc')[0].innerHTML=error.message;
