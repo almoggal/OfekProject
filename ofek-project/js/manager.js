@@ -1,6 +1,5 @@
 var mSuccess = $('#modalSuccess')[0];
 var mFail = $('#modalFail')[0];
-var basesNum = 0;
 
 // Get the button that opens the modal
 var btn = $('#submitBtn')[0];
@@ -17,7 +16,7 @@ btn.onclick = function() {
     var password = $('#password')[0].value;
     var bases = [];
     var j = 0;
-    for(var i = 0; i<basesNum; i++){
+    for(var i = 0; i<window.bases.length; i++){
         if($('#num'+i)[0].checked == true){
             bases[j] = $('#num'+i)[0].value;
             j++
@@ -31,7 +30,7 @@ btn.onclick = function() {
         modal.style.display = "block";
         $('#username')[0].value = "";
         $('#password')[0].value = "";
-        for(var i = 0; i<basesNum; i++){
+        for(var i = 0; i<window.bases.length; i++){
             if($('#num'+i)[0].checked == true){
                 $('#num'+i)[0].checked = false;
             }
@@ -66,31 +65,24 @@ $(document).ready(function() {
     console.log("Manager page ready!");
 
     //Populate list
-    getBases($('#basesNames'));
+    basesList($('#basesNames'));
     
     //
 });
 
-var basesList = function(list, bases){
-    for(var i = 0; i<bases.length; i++){
-        list[0].innerHTML+="<input id=\"num"+i+"\" type=\"checkbox\" value=\""+bases[i]+"\">  "+bases[i];
-        if((i%2==0) && i< (bases.length - 1)){
+var basesList = function(list){
+    for(var i = 0; i<window.bases.length; i++){
+        list[0].innerHTML+="<input id=\"num"+i+"\" type=\"checkbox\" value=\""+window.bases[i]+"\">  "+window.bases[i];
+        if((i%2==0) && i< (window.bases.length - 1)){
             list[0].innerHTML+="    |   ";
         }
         else{
             list[0].innerHTML+="<br>";
         }
     }
-    basesNum = i;
 }
 
-var getBases = function(list){
-    readBaseNamesPromise().then(function(snapshot) {
-        var base_names = snapshot.val();
-        console.log(JSON.stringify(base_names));
-        basesList(list, base_names);
-});
-}
+
 
 function showSpinner(f){
 
