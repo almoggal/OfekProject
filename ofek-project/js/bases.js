@@ -1,27 +1,47 @@
-var bases = [];
-
 $(document).ready(function() {
     console.log("bases page ready!");
 
+    var id = window.userID;
     //Populate list
-    showSpinner(true);
-    getBases($('#bases_list'));
-    w3_enableSidear(false);
+    if(window.bases.length == null || window.bases.length == 0)
+        fireOnce(id, $('#bases_list'));
+    else
+        doneRequest($('#bases_list'));
+        
 });
 
-var getBases = function(list){
-    readBaseNamesPromise().then(function(snapshot) {
-        var base_names = snapshot.val();
+var getUserBases = function(list){
+    readAutoForUser().then(function(bases){
+            window.bases = bases;
+            doneRequest(list);
+        });
+}
+
+var fireOnce = function(userid, list){
+    if(userID == 0) //DEFAULT
+        getBases(list);
+    else if(userID == 1) //EDITOR
+        getUserBases(list);
+        
+    showSpinner(true);
+    w3_enableSidear(false);
+}
+
+var doneRequest = function(list){
+    popluateList(list, window.bases);
+    showSpinner(false);
+}
+
+var getBases = function (list) {
+    readBases().then(function (base_names) {
         console.log(JSON.stringify(base_names));
-        this.bases = base_names;
-        popluateList(list, base_names);
-        //popluateList(list, ["1","בסיס 108", "נבטים"]);
-        showSpinner(false);
-});
+        window.bases = base_names;
+        doneRequest(list);
+    });
 }
 
 var getBase = function(id){
-    var base = this.bases[id];
+    var base = window.bases[id];
     console.log("Click for base: "+base);
     readBasePromise(base).then(function(snapshot) {
         var base_names = snapshot.val();
@@ -32,8 +52,9 @@ var getBase = function(id){
         //jsonObj.forEach( function(p){
         //    btns.push(p.key);
         //});
-        this.currentBase = jsonObj;
+        window.currentBaseFields = jsonObj;
         setSideBarButtons(btns);
+        window.currentBase = base;
         w3_enableSidear(true);
 }).catch(function(error){
         console.log(error);
@@ -42,9 +63,9 @@ var getBase = function(id){
 }
 
 var getKeys = function(jsonData){
-    
+
     var keys = [];
-    
+
     for(var i in jsonData){
     var key = i;
     var val = jsonData[i];
@@ -55,7 +76,7 @@ var getKeys = function(jsonData){
         console.log(sub_key);
     }
 }
-    
+
    return keys;
 }
 

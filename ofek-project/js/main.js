@@ -1,6 +1,3 @@
-var currentBase = [];
-var currentField = [];
-
 $(document).ready(function() {
     
     console.log("main page ready!");
@@ -14,14 +11,26 @@ $(document).ready(function() {
     onClickNavBarButton(1);
 });
 
+var redirectTo = function(page){
+    $("#includedContent").load(page);
+}
 
 var onClickNavBarButton = function(id){
     console.log("Nav bar button click detected!")
     
     if(id == 1) //Bases
-        $("#includedContent").load("pages/bases.html");
-    else if(id == 2) //Login
-        $("#includedContent").load("pages/login.html");
+        redirectTo("pages/bases.html");
+    else if(id == 2 && userID == 0) //Login only if im in default mode
+        redirectTo("pages/login.html");
+    else if(id == 2 && userID != 0){ //I'm logged in and want to sign out
+        signOut();
+        console.log("Signed out!");
+        $("#navbar_bottom").attr("class","w3-bottom w3-hide");
+        $("#navbar_buttons")[0].remove();
+        setNavBarButtons(["משתמשים רשומים", "בסיסים"]);
+        window.clearData();
+        window.location.reload();
+    }
 }
 
 var setSideBarButtons = function(buttons){
@@ -70,9 +79,9 @@ var popluateList = function(list, bases){
 
 var onClickSidebarButtons = function(id){
     console.log("clicked on sidebar button: "+id);
-    $("#includedContent").load("pages/content.html");
-    currentField[0] = Object.keys(currentBase)[id];
-    currentField[1] = currentBase[currentField[0]];
+    window.currentField[0] = Object.keys(window.currentBaseFields)[id];
+    window.currentField[1] = window.currentBaseFields[window.currentField[0]];
+    this.redirectTo("pages/content.html");
 }
 
 // Toggle between showing and hiding the sidebar, and add overlay effect
