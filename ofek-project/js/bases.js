@@ -56,6 +56,7 @@ var getBase = function(id){
         setSideBarButtons(btns);
         window.currentBase = base;
         w3_enableSidear(true);
+        w3_open();
 }).catch(function(error){
         console.log(error);
         w3_enableSidear(false);
