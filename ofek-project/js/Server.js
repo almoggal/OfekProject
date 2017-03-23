@@ -19,14 +19,13 @@ function readAutoForUser() {
     if (!curUser) {
         return false;
     }
-    return new Promise(function(resolve, reject){
-            readUser(curUser.uid
-).
-    then(function (ruleUser) {
-        var data = ruleUser.val();
-        return data.AutoBases;
-    })
-});
+    return new Promise(function (resolve, reject) {
+        readUser(curUser.uid
+        ).then(function (ruleUser) {
+            var data = ruleUser.val();
+            resolve(data.AutoBases);
+        })
+    });
 }
 function isAutoForBase(base) {
     var auto = firebase.auth();

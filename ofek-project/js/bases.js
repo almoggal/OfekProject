@@ -7,15 +7,13 @@ $(document).ready(function() {
     w3_enableSidear(false);
 });
 
-var getBases = function(list){
-    readBaseNamesPromise().then(function(snapshot) {
-        var base_names = snapshot.val();
+var getBases = function (list) {
+    readBases().then(function (base_names) {
         console.log(JSON.stringify(base_names));
         this.bases = base_names;
         popluateList(list, base_names);
-        //popluateList(list, ["1","בסיס 108", "נבטים"]);
         showSpinner(false);
-});
+    });
 }
 
 var getBase = function(id){
@@ -40,9 +38,9 @@ var getBase = function(id){
 }
 
 var getKeys = function(jsonData){
-    
+
     var keys = [];
-    
+
     for(var i in jsonData){
     var key = i;
     var val = jsonData[i];
@@ -53,7 +51,7 @@ var getKeys = function(jsonData){
         console.log(sub_key);
     }
 }
-    
+
    return keys;
 }
 
