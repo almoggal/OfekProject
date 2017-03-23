@@ -10,7 +10,6 @@ function writeBase(base_name, base_properties) {
     });
 }
 
-
 function readBaseNamesPromise() {
     return firebase.database().ref('base_names/').once("value");
 }
