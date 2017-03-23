@@ -39,7 +39,7 @@ var setEditText = function(f){
         $('#container-edit')[0].classList.add("w3-hide");
 }
 
-var updateChanges(){
+var updateChanges = function(){
     var title = $('#myTitleEdit')[0].innerHTML;
     var text = $('#myTextEdit')[0].innerHTML;
     updateBase(window.currentBase, title, text);
