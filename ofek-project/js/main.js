@@ -20,8 +20,17 @@ var onClickNavBarButton = function(id){
     
     if(id == 1) //Bases
         redirectTo("pages/bases.html");
-    else if(id == 2) //Login
+    else if(id == 2 && userID == 0) //Login only if im in default mode
         redirectTo("pages/login.html");
+    else if(id == 2 && userID != 0){ //I'm logged in and want to sign out
+        signOut();
+        console.log("Signed out!");
+        $("#navbar_bottom").attr("class","w3-bottom w3-hide");
+        $("#navbar_buttons")[0].remove();
+        setNavBarButtons(["משתמשים רשומים", "בסיסים"]);
+        window.clearData();
+        window.location.reload();
+    }
 }
 
 var setSideBarButtons = function(buttons){
