@@ -31,10 +31,15 @@ function onSubmit() {
             if(f)
                 setTimeout(function(){
                     this.redirectTo("pages/ManagerForm.html");
+                    connSuccess();
+                    window.userID = 2;
                 },1000);
             else
                 setTimeout(function(){
                     this.redirectTo("pages/bases.html");
+                    connSuccess();
+                    clearData();
+                    window.userID = 1;
                 },1000);
         }));
         
@@ -57,9 +62,8 @@ function showSpinner(f){
 }
 
 function connSuccess(){
-    $("#navbar_bottom").attr("class","");
+    $("#navbar_bottom").attr("class","w3-bottom");
     $("#navbar_buttons")[0].remove();
-    //$('#navbar').attr("innerHtml","");
     setNavBarButtons(["התנתק", "בסיסים"]);
 }
 
