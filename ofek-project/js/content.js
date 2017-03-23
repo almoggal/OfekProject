@@ -40,7 +40,7 @@ var setEditText = function(f){
 }
 
 var updateChanges = function(){
-    var title = $('#myTitleEdit')[0].value;
+    var title = $('#myTitleEdit')[0].innerHTML;
     var text = $('#myTextEdit')[0].value;
     updateBase(window.currentBase, title, text).then(function(){
         console.log("Update successful!");
