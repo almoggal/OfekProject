@@ -23,6 +23,10 @@ var onClickNavBarButton = function(id){
 
 var setSideBarButtons = function(buttons){
     
+    while ($('#mySidebar')[0].childElementCount >= 3) {
+        $('#mySidebar')[0].removeChild($('#mySidebar')[0].lastChild);
+    };
+    
     var sidebar = document.createElement("div");
     
     for(var i = 0; i<buttons.length; i++){
@@ -37,6 +41,7 @@ var setNavBarButtons = function(buttons){
     var topBar = document.createElement("div");
     topBar.id = ("navbar_buttons");
     topBar.style.position='absolute';
+    topBar.style.marginRight = '48px';
     
     buttons.forEach(function(element, index, arr){
         var btn = document.createElement("a");
@@ -52,6 +57,9 @@ var setNavBarButtons = function(buttons){
 
 // Toggle between showing and hiding the sidebar, and add overlay effect
 function w3_open() {
+    if($('#navbar-btn-click')[0].classList.contains("w3-disabled"))
+        return;
+    
     if ($('#mySidebar')[0].style.display === 'block') {
         $('#mySidebar')[0].style.display = 'none';
         $('#navbar-btn')[0].className = "fa fa-bars";
@@ -65,4 +73,11 @@ function w3_open() {
 function w3_close() {
     $('#mySidebar')[0].style.display = "none";
     $('#navbar-btn')[0].className = "fa fa-bars";
+}
+
+function w3_enableSidear(f){
+    if(f)
+        $('#navbar-btn-click')[0].classList.remove("w3-disabled");
+    else
+        $('#navbar-btn-click')[0].classList.add("w3-disabled");
 }
