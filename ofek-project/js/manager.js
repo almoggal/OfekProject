@@ -37,8 +37,8 @@ span.onclick = function() {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
 
-    if (event.target == mSuccess) {
+    if (event.target.className == "close") {
         mSuccess.style.display = "none";
-    } else if(event.target == mFail)
         mFail.style.display = "none";
+    }
 }

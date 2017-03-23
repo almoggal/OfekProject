@@ -1,6 +1,3 @@
-var currentBase = [];
-var currentField = [];
-
 $(document).ready(function() {
     
     console.log("main page ready!");
@@ -14,14 +11,17 @@ $(document).ready(function() {
     onClickNavBarButton(1);
 });
 
+var redirectTo = function(page){
+    $("#includedContent").load(page);
+}
 
 var onClickNavBarButton = function(id){
     console.log("Nav bar button click detected!")
     
     if(id == 1) //Bases
-        $("#includedContent").load("pages/bases.html");
+        redirectTo("pages/bases.html");
     else if(id == 2) //Login
-        $("#includedContent").load("pages/login.html");
+        redirectTo("pages/login.html");
 }
 
 var setSideBarButtons = function(buttons){

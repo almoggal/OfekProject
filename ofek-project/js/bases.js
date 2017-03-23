@@ -1,5 +1,3 @@
-var bases = [];
-
 $(document).ready(function() {
     console.log("bases page ready!");
 

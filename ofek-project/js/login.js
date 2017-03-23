@@ -26,9 +26,19 @@ function onSubmit() {
         var modal = mSuccess;
         modal.style.display = "block";
         showSpinner(false);
-        setTimeout(function(){
-            $("#includedContent").load("pages/ManagerForm.html");
-        },1000);
+        
+        if(isManager().then(function(f){
+            if(f)
+                setTimeout(function(){
+                    this.redirectTo("pages/ManagerForm.html");
+                },1000);
+            else
+                setTimeout(function(){
+                    this.redirectTo("pages/bases.html");
+                },1000);
+        }));
+        
+        
     }).catch(function(error){
         showSpinner(false);
         //show error
@@ -40,7 +50,6 @@ function onSubmit() {
 }
 
 function showSpinner(f){
-
     if(f)
         $("#loading_spinner").attr("class","");
     else
@@ -63,8 +72,8 @@ span.onclick = function() {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
 
-    if (event.target == mSuccess) {
+    if (event.target.className == "close") {
         mSuccess.style.display = "none";
-    } else if(event.target == mFail)
         mFail.style.display = "none";
+    }
 }
