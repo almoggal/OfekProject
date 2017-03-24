@@ -79,8 +79,8 @@ var popluateList = function(list, bases){
 
 var onClickSidebarButtons = function(id){
     console.log("clicked on sidebar button: "+id);
-    window.currentField[0] = Object.keys(window.currentBase)[id];
-    window.currentField[1] = window.currentBase[window.currentField[0]];
+    window.currentField[0] = Object.keys(window.currentBaseFields)[id];
+    window.currentField[1] = window.currentBaseFields[window.currentField[0]];
     this.redirectTo("pages/content.html");
 }
 

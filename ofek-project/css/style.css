@@ -82,3 +82,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     background-color: #f20a1c;
     color: white;
 }
+
+@font-face {
+    font-family: SecularOne;
+    src: url(../resources/SecularOne-Regular.ttf);
+}
+html,body{
+    height:100%
+}
