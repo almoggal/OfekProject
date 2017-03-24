@@ -8,4 +8,6 @@ var setContent = function(title, text){
     //console.log("loading: "+title+" and "+text);
     $('#myTitle')[0].innerHTML = title;
     $('#myText')[0].innerHTML = text;
+    $("#BaseTitle")[0].innerHTML=window.currentBaseName
+    console.log(window.currentBaseName)
 }

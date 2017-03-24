@@ -43,6 +43,7 @@ var getBases = function (list) {
 var getBase = function(id){
     var base = window.bases[id];
     console.log("Click for base: "+base);
+    window.currentBaseName = base
     readBasePromise(base).then(function(snapshot) {
         var base_names = snapshot.val();
         var jsonObj = base_names.properties;
@@ -53,6 +54,7 @@ var getBase = function(id){
         //    btns.push(p.key);
         //});
         window.currentBase = jsonObj;
+        window.currentBaseName = base;
         setSideBarButtons(btns);
         w3_enableSidear(true);
 }).catch(function(error){
