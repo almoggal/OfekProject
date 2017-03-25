@@ -1,6 +1,6 @@
 $(document).ready(function(){
     console.log("loaded content page!");
-    
+    $("#BaseTitle")[0].innerHTML=window.currentBaseName
     if(window.userID != 1){
         setContentView(window.currentField[0],window.currentField[1]);
         setViewText(true);
@@ -17,8 +17,6 @@ var setContentView = function(title, text){
     //console.log("loading: "+title+" and "+text);
     $('#myTitle')[0].innerHTML = title;
     $('#myText')[0].innerHTML = text;
-    $("#BaseTitle")[0].innerHTML=window.currentBaseName
-    console.log(window.currentBaseName)
 }
 
 var setContentEdit = function(title, text){
